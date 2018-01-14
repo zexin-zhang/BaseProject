@@ -91,6 +91,10 @@ public class restaurantPack {
     {
         return restaurantall[id];
     }
+    public restaurant[] getallRestaurant()
+    {
+        return restaurantall;
+    }
     public String toString()
     {
         return Integer.toString(top);
