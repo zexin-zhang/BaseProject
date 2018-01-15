@@ -9,7 +9,8 @@ class restaurant{
     private String type;
     private String address;
     private String phone;
-
+    private String username;
+    private String password;
     private boolean available=true;
 //    營業時間定義
 //    所有營業時間皆採用24小時制
@@ -20,7 +21,7 @@ class restaurant{
 //    營業時間定義結束
     private static int id;
 
-    public restaurant(int id,String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    public restaurant(int id,String username,String passweord,String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
         this.id = id;
         this.name = name;
@@ -33,7 +34,7 @@ class restaurant{
         this.close_hours=close_hours;
         this.close_minutes = close_minutes;
     }
-    public restaurant(String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    public restaurant(String username,String passweord,String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
         this.name = name;
         location = new Location(longitude,latitude);
@@ -45,7 +46,7 @@ class restaurant{
         this.close_hours=close_hours;
         this.close_minutes = close_minutes;
     }
-    public restaurant(int id,String name,Location newlocation,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    public restaurant(int id,String username,String passweord,String name,Location newlocation,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
         this.id = id;
         this.name = name;
@@ -122,6 +123,24 @@ class restaurant{
             return false;
         }
     }
+    public boolean checkPassword(String username,String password)
+    {
+        if(username.equals(this.username))
+        {
+            if(password.equals(this.password))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
 public class restaurantPack {
@@ -136,14 +155,14 @@ public class restaurantPack {
     {
         restaurantall = new restaurant[number];
     }
-    public void add(String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    public void add(String username,String passweord,String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
-        restaurantall[top] = new restaurant(top,name,longitude,latitude,type,address,phone,open_hours,open_minutes,close_hours,close_minutes);
+        restaurantall[top] = new restaurant(top,username,passweord,name,longitude,latitude,type,address,phone,open_hours,open_minutes,close_hours,close_minutes);
         top++;
     }
-    public void add(String name,Location location1,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    public void add(String username,String passweord,String name,Location location1,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
-        restaurantall[top] = new restaurant(top,name,location1,type,address,phone,open_hours,open_minutes,close_hours,close_minutes);
+        restaurantall[top] = new restaurant(top,username,passweord,name,location1,type,address,phone,open_hours,open_minutes,close_hours,close_minutes);
         top++;
     }
     public void add(Object new_restaurant)
@@ -185,6 +204,17 @@ public class restaurantPack {
 
         }
         return returnPack;
+    }
+    public restaurant login(String username,String password)
+    {
+        for (int i=0;i<top;i++)
+        {
+            if(restaurantall[i].checkPassword(username,password))
+            {
+                return restaurantall[i];
+            }
+        }
+        return null;
     }
     public String toString()
     {

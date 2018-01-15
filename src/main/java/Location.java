@@ -17,6 +17,16 @@ public class Location {
         this.longitude = location2.longitude;
         this.latitude = location2.latitude;
     }
+    public void setnewlocation(double longitude,double latitude)
+    {
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+    public void setnewlocation(Location location)
+    {
+        this.longitude = location.longitude;
+        this.latitude = location.latitude;
+    }
     public double distance(Location location2)
     {
         double distance,squareX,squareY;
@@ -24,5 +34,9 @@ public class Location {
         squareY = Math.pow(Math.abs(location2.latitude-this.latitude),2);
         distance = Math.sqrt(squareX+squareY);
         return distance;
+    }
+    public String toString()
+    {
+        return "x:"+Double.toString(longitude)+"y:"+Double.toString(latitude);
     }
 }

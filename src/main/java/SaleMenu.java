@@ -1,10 +1,11 @@
 import java.io.IOException;
-import java.util.*;
-public class Menu {
+import java.util.Scanner;
+
+public class SaleMenu {
     UserPack users;
     restaurantPack restaurants;
     private int choose;
-    public Menu(UserPack users,restaurantPack restaurants) throws IOException, InterruptedException {
+    public SaleMenu(UserPack users,restaurantPack restaurants) throws IOException, InterruptedException {
         this.users = users;
         this.restaurants = restaurants;
         menuPrint();
@@ -13,7 +14,7 @@ public class Menu {
         switch(choose)
         {
             case 1:
-                mapSearch();
+
                 break;
             default:
                 break;
@@ -24,18 +25,15 @@ public class Menu {
             menuPrint();
         }
     }
-    public void mapSearch()
-    {
-        mapSearch mapSearch_activity = new mapSearch(this.users,this.restaurants);
-    }
+
     public void menuPrint() throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         Scanner choose_scan = new Scanner(System.in);
         System.out.println("----------------------------------------------------------------------");
-        System.out.println("歡迎使用本軟體，請選擇您所需要的功能");
+        System.out.println("歡迎餐廳管理員使用本軟體，請選擇您所需要的功能");
         System.out.println("----------------------------------------------------------------------");
-        System.out.println("1.利用地圖搜尋附近餐廳");
-        System.out.println("2.查看餐廳評論");
+        System.out.println("1.登錄");
+        System.out.println("2.註冊");
         System.out.println("3.分類檢索餐廳");
         System.out.println("4.利用地圖搜尋附近餐廳");
         System.out.println("5.使用、領用優惠券");
