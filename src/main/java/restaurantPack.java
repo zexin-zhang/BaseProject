@@ -216,6 +216,10 @@ public class restaurantPack {
         }
         return null;
     }
+    public int restaurantNumber()
+    {
+        return top;
+    }
     public String toString()
     {
         return Integer.toString(top);
@@ -224,6 +228,22 @@ public class restaurantPack {
     {
         return false;
     }
-
-
+    public void sortbydistance(Location location)
+    {
+        for (int i=0;i<top;i++)
+        {
+            int min = i;
+            for (int j=i;j<top;j++)
+            {
+                if (restaurantall[min].distance(location)>restaurantall[j].distance(location))
+                {
+                    min = j;
+                }
+            }
+            restaurant temp;
+            temp = restaurantall[i];
+            restaurantall[i] = restaurantall[min];
+            restaurantall[min] = temp;
+        }
+    }
 }
