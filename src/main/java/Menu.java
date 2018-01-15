@@ -24,8 +24,7 @@ public class Menu {
             menuPrint();
         }
     }
-    public void mapSearch()
-    {
+    public void mapSearch() throws IOException, InterruptedException {
         mapSearch mapSearch_activity = new mapSearch(this.users,this.restaurants);
     }
     public void menuPrint() throws IOException, InterruptedException {
@@ -44,5 +43,6 @@ public class Menu {
         System.out.print("你的選擇：");
         this.choose=choose_scan.nextInt();
         String junk = choose_scan.nextLine();
+        chooseMenu();
     }
 }

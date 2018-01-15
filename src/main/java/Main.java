@@ -25,7 +25,7 @@ public class Main {
         System.out.print("你的經度：");
         latitude = scanner.nextDouble();
         junk = scanner.nextLine();
-        user.setMyLocation(longitude,latitude);
+        user.setLocation(longitude,latitude);
         restaurants = restaurantcsv(restaurants);
         users.addUser(user);
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
