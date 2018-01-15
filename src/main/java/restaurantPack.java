@@ -33,6 +33,31 @@ class restaurant{
         this.close_hours=close_hours;
         this.close_minutes = close_minutes;
     }
+    public restaurant(String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    {
+        this.name = name;
+        location = new Location(longitude,latitude);
+        this.type = type;
+        this.address  = address;
+        this.phone = phone;
+        this.open_hours = open_hours;
+        this.open_minutes = open_minutes;
+        this.close_hours=close_hours;
+        this.close_minutes = close_minutes;
+    }
+    public restaurant(int id,String name,Location newlocation,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    {
+        this.id = id;
+        this.name = name;
+        location = newlocation;
+        this.type = type;
+        this.address  = address;
+        this.phone = phone;
+        this.open_hours = open_hours;
+        this.open_minutes = open_minutes;
+        this.close_hours=close_hours;
+        this.close_minutes = close_minutes;
+    }
     public restaurant(Object restaurant2)
     {
         restaurant other  = (restaurant) restaurant2;
@@ -65,6 +90,10 @@ class restaurant{
     public String getName()
     {
         return this.name;
+    }
+    public int getId()
+    {
+        return this.id;
     }
     public String gettype()
     {
@@ -112,8 +141,14 @@ public class restaurantPack {
         restaurantall[top] = new restaurant(top,name,longitude,latitude,type,address,phone,open_hours,open_minutes,close_hours,close_minutes);
         top++;
     }
+    public void add(String name,Location location1,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    {
+        restaurantall[top] = new restaurant(top,name,location1,type,address,phone,open_hours,open_minutes,close_hours,close_minutes);
+        top++;
+    }
     public void add(Object new_restaurant)
     {
+
         restaurantall[top] = new restaurant(new_restaurant);
         top++;
     }
@@ -125,6 +160,32 @@ public class restaurantPack {
     {
         return restaurantall;
     }
+    public restaurantPack getRestaurant(String name)
+    {
+        restaurantPack returnPack = new restaurantPack();
+        for(int i= 0;i<top;i++)
+        {
+            if(name.equals(restaurantall[i].getName()))
+            {
+                returnPack.add(restaurantall[i]);
+            }
+
+        }
+        return returnPack;
+    }
+    public restaurantPack getRestaurantoftype(String type)
+    {
+        restaurantPack returnPack = new restaurantPack();
+        for(int i= 0;i<top;i++)
+        {
+            if(type.equals(restaurantall[i].gettype()))
+            {
+                returnPack.add(restaurantall[i]);
+            }
+
+        }
+        return returnPack;
+    }
     public String toString()
     {
         return Integer.toString(top);
@@ -133,4 +194,6 @@ public class restaurantPack {
     {
         return false;
     }
+
+
 }
