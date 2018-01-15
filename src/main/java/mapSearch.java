@@ -1,3 +1,8 @@
 public class mapSearch {
-//    UserPack users = new UserPack();
+    UserPack users ;
+    public mapSearch(UserPack users)
+    {
+        this.users = users;
+    }
+
 }
