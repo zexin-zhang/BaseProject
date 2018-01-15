@@ -1,4 +1,4 @@
-
+import java.util.Calendar;
 
 /**
  * Created by 柯博瀚 on 2018/1/13.
@@ -9,13 +9,18 @@ class restaurant{
     private String type;
     private String address;
     private String phone;
-    private int breakfast;
-    private int lunch;
-    private int dinner;
-    private int late_night_supper;
+
+    private boolean available=true;
+//    營業時間定義
+//    所有營業時間皆採用24小時制
+    private int open_hours;
+    private int open_minutes;
+    private int close_hours;
+    private int close_minutes;
+//    營業時間定義結束
     private static int id;
 
-    public restaurant(int id,String name,double longitude,double latitude,String type,String address,String phone,int breakfast,int lunch,int dinner,int late_night_supper)
+    public restaurant(int id,String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
         this.id = id;
         this.name = name;
@@ -23,10 +28,10 @@ class restaurant{
         this.type = type;
         this.address  = address;
         this.phone = phone;
-        this.breakfast = breakfast;
-        this.lunch = lunch;
-        this.dinner = dinner;
-        this.late_night_supper = late_night_supper;
+        this.open_hours = open_hours;
+        this.open_minutes = open_minutes;
+        this.close_hours=close_hours;
+        this.close_minutes = close_minutes;
     }
     public restaurant(Object restaurant2)
     {
@@ -36,10 +41,10 @@ class restaurant{
         this.type = other.type;
         this.address  = other.address;
         this.phone = other.phone;
-        this.breakfast = other.breakfast;
-        this.lunch = other.lunch;
-        this.dinner = other.dinner;
-        this.late_night_supper = other.late_night_supper;
+        this.open_hours = other.open_hours;
+        this.open_minutes = other.open_minutes;
+        this.close_hours=other.close_hours;
+        this.close_minutes = other.close_minutes;
     }
     public String toString()
     {
@@ -65,10 +70,29 @@ class restaurant{
     {
         return this.name;
     }
-//    public String getName()
-//    {
-//        return this.name;
-//    }
+    public String getAddress()
+    {
+        return this.address;
+    }
+    public boolean getOpen()
+    {
+        Calendar c1 = Calendar.getInstance();
+// 获得小时
+        int hour = c1.get(Calendar.HOUR_OF_DAY);
+// 获得分钟
+        int minute = c1.get(Calendar.MINUTE);
+        int nowtime = hour*60+minute;
+        int opentime = open_hours*60+open_minutes;
+        int closetime = close_hours*60+close_minutes;
+        if(nowtime>=opentime&&nowtime<closetime)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
 public class restaurantPack {
@@ -83,9 +107,15 @@ public class restaurantPack {
     {
         restaurantall = new restaurant[number];
     }
-    public void add(String name,double longitude,double latitude,String type,String address,String phone,int breakfast,int lunch,int dinner,int late_night_supper)
+    public void add(String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
-        restaurantall[top] = new restaurant(top,name,longitude,latitude,type,address,phone,breakfast,lunch,dinner,late_night_supper);
+        restaurantall[top] = new restaurant(top,name,longitude,latitude,type,address,phone,open_hours,open_minutes,close_hours,close_minutes);
+        top++;
+    }
+    public void add(Object new_restaurant)
+    {
+        restaurantall[top] = new restaurant(new_restaurant);
+        top++;
     }
     public restaurant getRestaurant(int id)
     {
