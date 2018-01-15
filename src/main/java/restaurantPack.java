@@ -216,6 +216,10 @@ public class restaurantPack {
         }
         return null;
     }
+    public int restaurantNumber()
+    {
+        return top;
+    }
     public String toString()
     {
         return Integer.toString(top);

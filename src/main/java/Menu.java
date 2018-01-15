@@ -34,7 +34,7 @@ public class Menu {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("歡迎使用本軟體，請選擇您所需要的功能");
         System.out.println("----------------------------------------------------------------------");
-        System.out.println("1.利用地圖搜尋附近餐廳");
+        System.out.println("1.當前位置搜尋附近餐廳");
         System.out.println("2.查看餐廳評論");
         System.out.println("3.分類檢索餐廳");
         System.out.println("4.利用地圖搜尋附近餐廳");

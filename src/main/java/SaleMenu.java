@@ -34,10 +34,7 @@ public class SaleMenu {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("1.登錄");
         System.out.println("2.註冊");
-        System.out.println("3.分類檢索餐廳");
-        System.out.println("4.利用地圖搜尋附近餐廳");
-        System.out.println("5.使用、領用優惠券");
-        System.out.println("6.離開");
+        System.out.println("3.離開");
         System.out.println("----------------------------------------------------------------------");
         System.out.print("你的選擇：");
         this.choose=choose_scan.nextInt();
