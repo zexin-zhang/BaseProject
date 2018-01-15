@@ -22,6 +22,16 @@ public class User {
 		this.location.setnewlocation(longitude, latitude);
 	}
 	
+	public User(Location location) {
+		this.name = null;
+		this.location.setnewlocation(location);
+	}
+	
+	public User(String name, Location location) {
+		this.name = name;
+		this.location.setnewlocation(location);
+	}
+	
 	public void setLocation(double longitude, double latitude) {
 		this.location.setnewlocation(longitude, latitude);
 	}
@@ -30,8 +40,8 @@ public class User {
 		this.location.setnewlocation(location);
 	}
 	
-	public String getLocation() {
-		return this.location.toString();
+	public Location getLocation() {
+		return this.location;
 	}
 	
 	public void setName(String name) {
@@ -53,7 +63,7 @@ public class User {
 	public String toString() {
 		return "Username: "+this.name+"\n"+
 				"UserID: "+this.UserID+"\n"+
-				"Location: "+this.getLocation();
+				"Location: "+this.location.toString();
 	}
 	
 	public boolean equals(User other) {
