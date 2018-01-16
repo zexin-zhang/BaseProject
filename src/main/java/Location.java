@@ -1,3 +1,7 @@
+import java.math.*;
+
+import static java.lang.Math.*;
+
 public class Location {
     private double longitude;
     private double latitude;
@@ -30,24 +34,25 @@ public class Location {
     }
     private static double rad(double d)
     {
-        return d * Math.PI / 180.0;
+        return d * PI / 180.0000;
     }
-    public double distance(Location location2)
+
+    public double distance(Location location)
     {
-        double radLat1 = rad(this.latitude);
-        double radLat2 = rad(location2.latitude);
-        double a = radLat1 - radLat2;
-        double b = rad(this.longitude) - rad(location2.longitude);
-        double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2)+Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
-        s = s * EARTH_RADIUS;
-        s = Math.round(s * 10000) / 10000;
-        return s;
-//        double distance,squareX,squareY;
-//        squareX = Math.pow(Math.abs(location2.longitude-this.longitude),2);
-//        squareY = Math.pow(Math.abs(location2.latitude-this.latitude),2);
-//        distance = Math.sqrt(squareX+squareY);
-//        return distance;
+        double wd1 = this.longitude;
+        double jd1 = this.latitude;
+        double wd2 = location.longitude;
+        double jd2 = location.latitude;
+        double x,y,out;
+        double PI=3.14159265;
+        double R=6.371229*1e6;
+
+        x=(jd2-jd1)*PI*R*Math.cos( ((wd1+wd2)/2) *PI/180)/180;
+        y=(wd2-wd1)*PI*R/180;
+        out=Math.hypot(x,y);
+        return out;
     }
+
     public String toString()
     {
         return "x:"+Double.toString(longitude)+"y:"+Double.toString(latitude);

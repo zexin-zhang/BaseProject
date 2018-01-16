@@ -33,6 +33,7 @@ public class mapSearch {
         User user = users.getUser(0);
         System.out.println("----------------------------------------------------------------------");
         System.out.println(user.getName()+"您好，您目前位置在：主選單>當前位置附近餐廳>搜尋附近餐廳");
+        System.out.println(users.getUser(0).getLocation().toString());
         System.out.println("----------------------------------------------------------------------");
         System.out.println("請輸入搜尋範圍(單位：m）：");
         max_distance=scanner.nextDouble();
@@ -63,6 +64,7 @@ public class mapSearch {
                     System.out.println(i + "." + temp.getName());
                     System.out.println("  距離您 " + temp.distance(user.getLocation()) + "公尺");
                     System.out.println("  餐廳類型:" + temp.gettype());
+                    System.out.println("  餐廳經緯度:" + temp.getLocation().toString());
                     System.out.println("----------------------------------------------------------------------");
                 }
                 String MenuSelection = scanner.next();

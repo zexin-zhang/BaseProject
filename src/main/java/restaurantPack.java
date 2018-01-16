@@ -84,6 +84,10 @@ class restaurant{
     {
         return this.location.distance(location);
     }
+    public Location getLocation()
+    {
+        return this.location;
+    }
     public void setName(String name)
     {
         this.name = name;
@@ -98,7 +102,7 @@ class restaurant{
     }
     public String gettype()
     {
-        return this.name;
+        return this.type;
     }
     public String getAddress()
     {

@@ -1,12 +1,8 @@
 import java.io.IOException;
 import java.util.*;
 public class Main {
-
-
-
-
     public static void  main(String args[]) throws IOException, InterruptedException {
-        restaurantPack restaurants = new restaurantPack();
+        restaurantPack restaurants = new restaurantcsv().main();
         Scanner scanner = new Scanner(System.in);
         UserPack users = new UserPack();
         User user = new User();
@@ -26,8 +22,10 @@ public class Main {
         latitude = scanner.nextDouble();
         junk = scanner.nextLine();
         user.setLocation(longitude,latitude);
+
         restaurants = restaurantcsv(restaurants);
         users.addUser(user);
+        System.out.println(users.getUser(0).getLocation().toString());
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 
         System.out.println("----------------------------------------------------------------------");
