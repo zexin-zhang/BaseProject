@@ -17,7 +17,7 @@
                 // use comma as separator
                 String[] temp = line.split(cvsSplitBy);
                 location = new Location(Double.valueOf(temp[4]),Double.valueOf(temp[5]));
-                restaurants.add(temp[1],temp[2],temp[3],location,temp[6],temp[7],temp[8],Integer.valueOf(temp[9]),Integer.valueOf(temp[10]),Integer.valueOf(temp[11]),Integer.valueOf(temp[12]));
+                restaurants.add(temp[1],temp[2],temp[3],location,temp[6],temp[7],temp[8],Integer.valueOf(temp[10]),Integer.valueOf(temp[11]),Integer.valueOf(temp[12]),Integer.valueOf(temp[13]));
             }
 
         } catch (FileNotFoundException e) {

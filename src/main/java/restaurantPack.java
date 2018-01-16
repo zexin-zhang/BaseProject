@@ -108,6 +108,9 @@ class restaurant{
     {
         return this.address;
     }
+    public String getPhone(){
+        return this.phone;
+    }
     public boolean getOpen()
     {
         Calendar c1 = Calendar.getInstance();
@@ -126,6 +129,45 @@ class restaurant{
         {
             return false;
         }
+    }
+    public String getRunningtime()
+    {
+        String runningtime = "";
+        if(open_hours<10)
+        {
+            runningtime+="0"+open_hours;
+        }
+        else
+        {
+            runningtime+=open_hours;
+        }
+        runningtime+=":";
+        if(open_minutes<10)
+        {
+            runningtime+="0"+open_minutes;
+        }
+        else
+        {
+            runningtime+=open_minutes;
+        }
+        runningtime+="-";
+        if(close_hours<10)
+        {
+            runningtime+="0"+close_hours;
+        }
+        else
+        {
+            runningtime+=close_hours;
+        }
+        if(close_minutes<10)
+        {
+            runningtime+="0"+close_minutes;
+        }
+        else
+        {
+            runningtime+=close_minutes;
+        }
+        return runningtime;
     }
     public boolean checkPassword(String username,String password)
     {
