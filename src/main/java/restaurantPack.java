@@ -171,7 +171,6 @@ public class restaurantPack {
     }
     public void add(Object new_restaurant)
     {
-
         restaurantall[top] = new restaurant(new_restaurant);
         top++;
     }
@@ -192,7 +191,6 @@ public class restaurantPack {
             {
                 returnPack.add(restaurantall[i]);
             }
-
         }
         return returnPack;
     }
@@ -205,7 +203,6 @@ public class restaurantPack {
             {
                 returnPack.add(restaurantall[i]);
             }
-
         }
         return returnPack;
     }
