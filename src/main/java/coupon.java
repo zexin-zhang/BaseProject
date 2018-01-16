@@ -14,9 +14,9 @@ public class coupon {
   public coupon(restaurant in) {
     restID = in.getID();
     couponID = restID % 3;
-    content[0] = "M100œp10Ôª";
-    content[1] = "M200œp25Ôª";
-    content[2] = "M300œp40Ôª";
+    content[0] = "100 minus 10";
+    content[1] = "200 minus 25";
+    content[2] = "300 minus 45";
     used = false;
   }
 
