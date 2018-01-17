@@ -2,12 +2,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class mapSearch {
-    UserPack users ;
+    User user ;
     restaurantPack restaurants;
     private int choose;
-    public mapSearch(UserPack users,restaurantPack restaurants) throws IOException, InterruptedException {
-        this.users = users;
-        this.restaurants = restaurants;
+    public mapSearch(User user) throws IOException, InterruptedException {
+        this.user = user;
+        this.restaurants = restaurantcsv.main();
         showMenu();
     }
     public void chooseMenu() throws IOException, InterruptedException {
@@ -30,7 +30,7 @@ public class mapSearch {
         double max_distance;
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         Scanner scanner = new Scanner(System.in);
-        User user = users.getUser(0);
+        ;
         System.out.println("----------------------------------------------------------------------");
         System.out.println(user.getName()+"您好，您目前位置在：主選單>當前位置附近餐廳>搜尋附近餐廳");
         System.out.println("----------------------------------------------------------------------");
@@ -40,7 +40,7 @@ public class mapSearch {
         System.out.println("----------------------------------------------------------------------");
         for (int i =0;i<restaurants.restaurantNumber();i++)
         {
-            if(restaurants.getRestaurant(i).distance(users.getUser(0).getLocation())<=max_distance)
+            if(restaurants.getRestaurant(i).distance(user.getLocation())<=max_distance)
             {
                 nearby.add(restaurants.getRestaurant(i));
             }
@@ -158,7 +158,7 @@ public class mapSearch {
             }
             else if(choose.equals("p")||choose.equals("P"))
             {
-
+                comMenu comment = new comMenu(restaurant.getId(),user);
             }
             else
             {
@@ -169,7 +169,7 @@ public class mapSearch {
 
     }
     public void showMenu() throws IOException, InterruptedException {
-        User user = users.getUser(0);
+
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         Scanner choose_scan = new Scanner(System.in);
         System.out.println("----------------------------------------------------------------------");

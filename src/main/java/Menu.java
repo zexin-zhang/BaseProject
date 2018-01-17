@@ -25,7 +25,8 @@ public class Menu {
         }
     }
     public void mapSearch() throws IOException, InterruptedException {
-        mapSearch mapSearch_activity = new mapSearch(this.users,this.restaurants);
+        System.out.println(userID+":"+this.users.getUser(userID).getName());
+        mapSearch mapSearch_activity = new mapSearch(this.users.getUser(userID));
     }
     public void menuPrint() throws IOException, InterruptedException {
         //new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -45,9 +46,27 @@ public class Menu {
         String junk = choose_scan.nextLine();
         chooseMenu();
     }
+    public void initial() throws IOException, InterruptedException {
+//        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        Scanner choose_scan = new Scanner(System.in);
+        double longitude,latitude;
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("歡迎使用本軟體，請初始化您的位置");
+        System.out.println("----------------------------------------------------------------------");
+        System.out.print("你的緯度：");
+        longitude = choose_scan.nextDouble();
+        String junk = choose_scan.nextLine();
+        System.out.print("你的經度：");
+        latitude = choose_scan.nextDouble();
+        users.getUser(userID).setLocation(longitude,latitude);
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("設定成功");
+        Thread.sleep(2000);
+        menuPrint();
+    }
     public void login() throws IOException, InterruptedException {
     		Scanner chooses = new Scanner(System.in);
-    		UserPack users = new UserPack();
+
     		users = userCsv.read();
         System.out.println("----------------------------------------------------------------------");
         System.out.println("1.登錄");
@@ -71,7 +90,7 @@ public class Menu {
             	        pass = chooses.nextLine();
         	        		if(users.getUser(ID).getPassword().equals(pass)) {
         	        			this.userID = ID;
-        	        			this.menuPrint();
+        	        			this.initial();
         	        			i=0;
         	        		} else {
         	        			System.out.println("密碼錯誤，您還可以嘗試"+i+"次！");

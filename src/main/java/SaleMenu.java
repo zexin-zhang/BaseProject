@@ -243,10 +243,12 @@ public class SaleMenu {
         String name,username,password,address,type;
         double longtitude,latitude;
         int open_hours,open_minutes,close_hours,close_minutes;
+        int invalid=0;
         System.out.println("----------------------------------------------------------------------");
         System.out.println("註冊頁面");
         System.out.println("----------------------------------------------------------------------");
         System.out.print("請輸入你的餐廳名稱：");
+        name = scan.nextLine();
         System.out.println("請輸入你的使用者名稱：");
         System.out.println("請輸入你的使用者密碼：");
         System.out.println("請再次輸入你的密碼：");
@@ -254,6 +256,82 @@ public class SaleMenu {
         System.out.println("請輸入您的餐廳緯度：");
         System.out.println("請輸入您的餐廳經度：");
         System.out.println("請輸入您的餐廳電話（不含0，ex:432111111）：");
+        System.out.print("新營業時間(格式請打 ex:10:30-19:00，若是小於早上十點，請打 ex:09）：");
+        String running=scan.nextLine();
+        if(mapSearch.isNumeric(running.substring(0,2)))
+        {
+            System.out.println(running.substring(0,2));
+            if (Integer.valueOf(running.substring(0,2))<24&&Integer.valueOf(running.substring(0,2))>=0)
+            {
+                open_hours=Integer.valueOf(running.substring(0,2));
+            }
+            else
+            {
+                invalid=1;
+            }
+
+        }
+        else
+        {
+            invalid=1;
+        }
+        if(mapSearch.isNumeric(running.substring(3,5)))
+        {
+            System.out.println(running.substring(3,5));
+            if (Integer.valueOf(running.substring(3,5))<60&&Integer.valueOf(running.substring(3,5))>=0)
+            {
+                open_minutes=Integer.valueOf(running.substring(3,5));
+            }
+            else
+            {
+                invalid=1;
+            }
+
+        }
+        else
+        {
+            invalid=1;
+        }
+        if(mapSearch.isNumeric(running.substring(6,8)))
+        {
+            if (Integer.valueOf(running.substring(6,8))<24&&Integer.valueOf(running.substring(6,8))>=0)
+            {
+                close_hours=Integer.valueOf(running.substring(6,8));
+            }
+            else
+            {
+                invalid=1;
+            }
+
+        }
+        else
+        {
+            invalid=1;;
+        }
+        if(mapSearch.isNumeric(running.substring(9,11)))
+        {
+            if (Integer.valueOf(running.substring(9,11))<60&&Integer.valueOf(running.substring(9,11))>=0)
+            {
+                close_minutes=Integer.valueOf(running.substring(9,11));
+            }
+            else
+            {
+                invalid=1;
+            }
+
+        }
+        else
+        {
+            invalid=1;
+        }
+        if (invalid!=1)
+        {
+
+        }
+        else
+        {
+
+        }
         System.out.println("----------------------------------------------------------------------");
         System.out.print("你的選擇：");
 //        menuchoose=scan.nextLine();
