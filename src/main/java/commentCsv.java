@@ -42,12 +42,10 @@ public class commentCsv {
 			String resID = "resID";
 			String name = "userName";
 			String com = "comment";
-			BufferedWriter bw = new BufferedWriter(new FileWriter(csv));
-			bw.write(resID+","+name+","+com);
-			bw.newLine();
+			FileOutputStream bw = new FileOutputStream(csv,false);
+			bw.write((resID+","+name+","+com+"\n").getBytes("BIG5"));
 			for(int i=0;i<comments.getCommentID();i++) {
-				bw.write(comments.forSave(i));
-				bw.newLine();
+				bw.write((comments.forSave(i)+"\n").getBytes("BIG5"));
 			}
 			bw.close();
 		} catch (FileNotFoundException e) { 
