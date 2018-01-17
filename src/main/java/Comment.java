@@ -37,6 +37,10 @@ public class Comment {
 		this.userName = userName;
 	}
 	
+	public String getUserName() {
+		return this.userName;
+	}
+	
 	public String toString() {
 		return "User: "+this.userName+"\n"+
 				"  "+this.paragraph;

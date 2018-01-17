@@ -13,10 +13,15 @@ public class CommentList {
 		commentID += 1;
 	}
 	
+	public String forSave(int i) {
+		return comments[i].getRestaurantID()+","+comments[i].getUserName()+","+comments[i].getParagraph();
+	}
+	
 	public void getComment(int resID) {
 		for(int i=0;i<this.commentID;i++) {
 			if(this.comments[i].getRestaurantID()==resID) {
 				System.out.println(this.comments[i]);
+				System.out.println("");
 			}
 		}
 	}
