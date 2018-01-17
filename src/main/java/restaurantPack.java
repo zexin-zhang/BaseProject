@@ -68,6 +68,7 @@ class restaurant{
     public restaurant(Object restaurant2)
     {
         restaurant other  = (restaurant) restaurant2;
+        this.id = other.id;
         this.username = other.username;
         this.password = other.password;
         this.name= other.name;
@@ -274,14 +275,14 @@ public class restaurantPack {
     {
         return restaurantall;
     }
-    public restaurantPack getRestaurant(String name)
+    public restaurant getRestaurant(String name)
     {
-        restaurantPack returnPack = new restaurantPack();
+        restaurant returnPack = null;
         for(int i= 0;i<top;i++)
         {
             if(name.equals(restaurantall[i].getName()))
             {
-                returnPack.add(restaurantall[i]);
+                returnPack = restaurantall[i];
             }
         }
         return returnPack;

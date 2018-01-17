@@ -39,18 +39,18 @@
 
             try {
                 File csv = new File("./src/main/resources/restaurant.csv");
+                String path="./src/main/resources/restaurant.csv";
+                FileOutputStream wrFile = new FileOutputStream(path,false);
 
-                BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
+                String title = "id,username,password,name,longitude,latitude,type,address,phone,available,open_hours,open_minutes,close_hours,close_minutes\n";
+                wrFile.write(title.getBytes("BIG5"));
 
-                bw.write("id,username,password,name,longitude,latitude,type,address,phone,available,open_hours,open_minutes,close_hours,close_minutes");
-                bw.newLine();
                 for (int i=0;i<restaurants.restaurantNumber();i++)
                 {
-                    bw.write(restaurants.getRestaurant(i).toString());
-                    bw.newLine();
+                    wrFile.write((restaurants.getRestaurant(i).toString()+"\n").getBytes("BIG5"));
                 }
 
-                bw.close();
+                wrFile.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

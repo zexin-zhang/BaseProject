@@ -112,7 +112,7 @@ public class SaleMenu {
                     System.out.println("您的舊地址為："+restaurant.getAddress());
                     System.out.print("新地址：");
                     String address=scan.nextLine();
-                    restaurants.getRestaurant(restaurant.getId()).setAddress(address);
+                    restaurants.getRestaurant(restaurant.getName()).setAddress(address);
                     System.out.println("----------------------------------------------------------------------");
                     System.out.print("變更完成");
                     Thread.sleep(2000);
@@ -226,6 +226,7 @@ public class SaleMenu {
                         break;
                     }
                     System.out.println("----------------------------------------------------------------------");
+                    restaurants.getRestaurant(restaurant.getName()).setPassword(newPassword);
                     System.out.print("變更完成");
                     Thread.sleep(2000);
                     new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
