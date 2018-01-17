@@ -13,7 +13,7 @@ public class userCsv {
             line = br.readLine();
             while((line=br.readLine())!=null){ 
                 String[] temp = line.split(csvSplitBy);
-                User tem = new User(temp[0],temp[2]);
+                User tem = new User(temp[0],temp[1]);
                 users.addUser(tem);
             } 
         } catch (FileNotFoundException e) { 
