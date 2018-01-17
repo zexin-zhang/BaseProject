@@ -19,7 +19,7 @@ class restaurant{
     private int close_hours;
     private int close_minutes;
 //    營業時間定義結束
-    private static int id;
+    private int id;
 
     public restaurant(int id,String username,String password,String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
@@ -187,6 +187,7 @@ class restaurant{
         {
             runningtime+=close_hours;
         }
+        runningtime+=":";
         if(close_minutes<10)
         {
             runningtime+="0"+close_minutes;
@@ -260,11 +261,14 @@ public class restaurantPack {
     public void add(String username,String passweord,String name,Location location1,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
         restaurantall[top] = new restaurant(top,username,passweord,name,location1,type,address,phone,open_hours,open_minutes,close_hours,close_minutes);
+
+        System.out.println(top);
         top++;
     }
     public void add(Object new_restaurant)
     {
         restaurantall[top] = new restaurant(new_restaurant);
+
         top++;
     }
     public restaurant getRestaurant(int id)
