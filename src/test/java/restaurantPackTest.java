@@ -7,7 +7,7 @@ public class restaurantPackTest {
     @Test
     public void login() {
         restaurantPack restaurants = restaurantcsv.main();
-        restaurant log = restaurants.login("19host","19host");
+        restaurant log = restaurants.login("19host","19");
         assertEquals(log.getUsername(),"19host");
         toString();
     }
@@ -16,7 +16,7 @@ public class restaurantPackTest {
         restaurantPack restaurants = restaurantcsv.main();
         restaurant log = restaurants.login("chicken","888888");
         System.out.println(log.toString());
-        assertEquals(log.toString(),"19host");
+
         return log.toString();
     }
 }
