@@ -9,7 +9,6 @@ public class couponPack {
         for (int i = 0; i < in.restaurantNumber(); i++){
             favor.getCoupon(i);
         }
-
         showUser();
 
     // receive coupon

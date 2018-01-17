@@ -17,7 +17,6 @@ public class couponOfUser {
             ownCoupon[this.num].getCoupon(restID[i]);
         }
     }
-
   }
 
   public void receivedCoupon(int id) {

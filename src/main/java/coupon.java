@@ -11,7 +11,6 @@ public class coupon {
   }
 
   public coupon(int id){
-
   }
 
   public void setUsed(int id){
