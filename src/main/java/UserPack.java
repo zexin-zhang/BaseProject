@@ -17,6 +17,10 @@ public class UserPack {
 		UserID += 1;
 	}
 	
+	public int getNum() {
+		return this.UserID;
+	}
+	
 	public User getUser(int i) {
 		return users[i];
 	}

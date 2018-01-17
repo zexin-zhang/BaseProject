@@ -37,11 +37,15 @@ public class userCsv {
 		
 		try {
 			File csv = new File("./src/main/resources/user.csv");
-			
-			BufferedWriter bw = new BufferedWriter(new FileWriter(csv, true));
-			
-			bw.write(users.getUser(0).getName()+","+users.getUser(0).getPassword());
+			String name = "name";
+			String pas = "password";
+			BufferedWriter bw = new BufferedWriter(new FileWriter(csv));
+			bw.write(name+","+pas);
 			bw.newLine();
+			for(int i=0;i<users.getNum();i++) {
+				bw.write(users.getUser(i).getName()+","+users.getUser(i).getPassword());
+				bw.newLine();
+			}
 			bw.close();
 		} catch (FileNotFoundException e) { 
             e.printStackTrace(); 

@@ -64,10 +64,11 @@ public class Menu {
         	        System.out.print("請輸入您的用戶ID：");
         	        int ID = chooses.nextInt();
         	        chooses.nextLine();
-        	        System.out.print("請輸入您的用戶密碼：");
-        	        String pass = chooses.nextLine();
+        	        String pass;
         	        int i=4;
         	        while(i>0) {
+        	        		System.out.print("請輸入您的用戶密碼：");
+            	        pass = chooses.nextLine();
         	        		if(users.getUser(ID).getPassword().equals(pass)) {
         	        			this.userID = ID;
         	        			this.menuPrint();
@@ -93,6 +94,7 @@ public class Menu {
         	        		users.addUser(newUser);
         	        		System.out.println("恭喜您註冊成功！");
         	        		System.out.println("您的用戶ID為："+newUser.getUserID()+" (下次登錄時請使用用戶ID登錄)");
+        	        		userCsv.write(users);
         	        	} else {
         	        		System.out.println("對不起，兩次密碼不相符！");
         	        	}
