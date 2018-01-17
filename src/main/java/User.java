@@ -1,6 +1,8 @@
+import java.util.*;
 
 public class User {
 	private String name;
+	private String password;
 	private int UserID;
 	Location location = new Location();
 	
@@ -12,24 +14,9 @@ public class User {
 		this.name = name;
 	}
 	
-	public User(double longitude, double latitude) {
-		this.name = null;
-		this.location.setnewlocation(longitude, latitude);
-	}
-	
-	public User(String name, double longitude, double latitude) {
+	public User(String name, String password) {
 		this.name = name;
-		this.location.setnewlocation(longitude, latitude);
-	}
-	
-	public User(Location location) {
-		this.name = null;
-		this.location.setnewlocation(location);
-	}
-	
-	public User(String name, Location location) {
-		this.name = name;
-		this.location.setnewlocation(location);
+		this.password = password;
 	}
 	
 	public void setLocation(double longitude, double latitude) {
@@ -56,6 +43,29 @@ public class User {
 		this.UserID = UserID;
 	}
 	
+	public String getPassword() {
+		return this.password;
+	}
+	
+	public void setPassword() {
+		Scanner keyin = new Scanner(System.in);
+		System.out.print("請輸入您當前的密碼：");
+		while(!this.password.equals(keyin.nextLine())) {
+			System.out.println("您的密碼輸入錯誤！");
+			System.out.println("請再次輸入您當前的密碼：");
+		}
+		System.out.print("請輸入您的新密碼：");
+		String newPassword = keyin.nextLine();
+		System.out.print("請確認您的新密碼：");
+		while(!newPassword.equals(keyin.nextLine())) {
+			System.out.println("您的兩次密碼輸入不符！");
+			System.out.print("請再次確認您的新密碼：");
+		}
+		this.password = newPassword;
+		System.out.println("密碼修改成功！");
+		keyin.close();
+	}
+	
 	public int getUserID() {
 		return this.UserID;
 	}
@@ -69,4 +79,5 @@ public class User {
 	public boolean equals(User other) {
 		return this.UserID==other.UserID;
 	}
+	
 }

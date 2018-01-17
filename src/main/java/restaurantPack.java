@@ -96,6 +96,10 @@ class restaurant{
     {
         return this.name;
     }
+    public String getUsername()
+    {
+        return this.username;
+    }
     public int getId()
     {
         return this.id;
@@ -107,6 +111,17 @@ class restaurant{
     public String getAddress()
     {
         return this.address;
+    }
+    public void setAddress(String Address)
+    {
+        this.address = Address;
+    }
+    public String getPhone(){
+        return this.phone;
+    }
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
     }
     public boolean getOpen()
     {
@@ -127,6 +142,53 @@ class restaurant{
             return false;
         }
     }
+    public void setRunningtime(int open_hours,int open_minutes,int close_hours,int close_minutes)
+    {
+        this.open_hours = open_hours;
+        this.open_minutes = open_minutes;
+        this.close_hours = close_hours;
+        this.close_minutes = close_minutes;
+    }
+    public String getRunningtime()
+    {
+        String runningtime = "";
+        if(open_hours<10)
+        {
+            runningtime+="0"+open_hours;
+        }
+        else
+        {
+            runningtime+=open_hours;
+        }
+        runningtime+=":";
+        if(open_minutes<10)
+        {
+            runningtime+="0"+open_minutes;
+        }
+        else
+        {
+            runningtime+=open_minutes;
+        }
+        runningtime+="-";
+        if(close_hours<10)
+        {
+            runningtime+="0"+close_hours;
+        }
+        else
+        {
+            runningtime+=close_hours;
+        }
+        if(close_minutes<10)
+        {
+            runningtime+="0"+close_minutes;
+        }
+        else
+        {
+            runningtime+=close_minutes;
+        }
+        return runningtime;
+    }
+
     public boolean checkPassword(String username,String password)
     {
         if(username.equals(this.username))
@@ -144,6 +206,28 @@ class restaurant{
         {
             return false;
         }
+    }
+    public boolean checkPassword(restaurant restaurant,String password)
+    {
+        if(restaurant.getUsername().equals(this.username))
+        {
+            if(password.equals(this.password))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public void setPassword(String password)
+    {
+        this.password= password;
     }
 
 }
@@ -171,7 +255,6 @@ public class restaurantPack {
     }
     public void add(Object new_restaurant)
     {
-
         restaurantall[top] = new restaurant(new_restaurant);
         top++;
     }
@@ -192,7 +275,6 @@ public class restaurantPack {
             {
                 returnPack.add(restaurantall[i]);
             }
-
         }
         return returnPack;
     }
@@ -205,7 +287,6 @@ public class restaurantPack {
             {
                 returnPack.add(restaurantall[i]);
             }
-
         }
         return returnPack;
     }
