@@ -5,8 +5,8 @@ public class SaleMenu {
     UserPack users;
     restaurantPack restaurants;
     private int choose;
-    public SaleMenu(UserPack users,restaurantPack restaurants) throws IOException, InterruptedException {
-        this.users = users;
+    public SaleMenu(restaurantPack restaurants) throws IOException, InterruptedException {
+
         this.restaurants = restaurants;
         menuPrint();
     }
@@ -14,13 +14,13 @@ public class SaleMenu {
         switch(choose)
         {
             case 1:
-
+                restaurantLogin();
                 break;
             default:
                 break;
 
         }
-        if(choose!=6)
+        if(choose!=3)
         {
             menuPrint();
         }
@@ -39,6 +39,8 @@ public class SaleMenu {
         restaurant choose = restaurants.login(username,password);
         if (choose!=null)
         {
+            System.out.println(choose.getName()+"歡迎回來");
+            Thread.sleep(2000);
             Salemenu(choose);
         }
         else
@@ -245,5 +247,6 @@ public class SaleMenu {
         System.out.print("你的選擇：");
         this.choose=choose_scan.nextInt();
         String junk = choose_scan.nextLine();
+        chooseMenu();
     }
 }

@@ -21,10 +21,12 @@ class restaurant{
 //    營業時間定義結束
     private static int id;
 
-    public restaurant(int id,String username,String passweord,String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    public restaurant(int id,String username,String password,String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
         this.id = id;
         this.name = name;
+        this.username = username;
+        this.password = password;
         location = new Location(longitude,latitude);
         this.type = type;
         this.address  = address;
@@ -34,9 +36,11 @@ class restaurant{
         this.close_hours=close_hours;
         this.close_minutes = close_minutes;
     }
-    public restaurant(String username,String passweord,String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    public restaurant(String username,String password,String name,double longitude,double latitude,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
         this.name = name;
+        this.username = username;
+        this.password = password;
         location = new Location(longitude,latitude);
         this.type = type;
         this.address  = address;
@@ -46,10 +50,12 @@ class restaurant{
         this.close_hours=close_hours;
         this.close_minutes = close_minutes;
     }
-    public restaurant(int id,String username,String passweord,String name,Location newlocation,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
+    public restaurant(int id,String username,String password,String name,Location newlocation,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
         this.id = id;
         this.name = name;
+        this.username = username;
+        this.password = password;
         location = newlocation;
         this.type = type;
         this.address  = address;
@@ -62,6 +68,8 @@ class restaurant{
     public restaurant(Object restaurant2)
     {
         restaurant other  = (restaurant) restaurant2;
+        this.username = other.username;
+        this.password = other.password;
         this.name= other.name;
         this.location = other.location;
         this.type = other.type;
