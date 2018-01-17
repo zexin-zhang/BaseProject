@@ -44,6 +44,7 @@ public class Main {
                 Menu menu = new Menu(users,restaurants);
                 break;
             case 2:
+                SaleMenu salemenu = new SaleMenu(users,restaurants);
                 break;
         }
 

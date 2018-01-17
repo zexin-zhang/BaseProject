@@ -50,11 +50,12 @@ public class Location {
         x=(jd2-jd1)*PI*R*Math.cos( ((wd1+wd2)/2) *PI/180)/180;
         y=(wd2-wd1)*PI*R/180;
         out=Math.hypot(x,y);
+        out = Math.round(out);
         return out;
     }
 
     public String toString()
     {
-        return "x:"+Double.toString(longitude)+"y:"+Double.toString(latitude);
+        return Double.toString(longitude)+","+Double.toString(latitude);
     }
 }

@@ -74,7 +74,7 @@ class restaurant{
     }
     public String toString()
     {
-        return this.name;
+        return this.id+","+this.username+","+this.password+","+this.name+","+this.location.toString()+","+this.type+","+this.address+","+this.phone+",1,"+this.open_hours+","+this.open_minutes+","+this.close_hours+","+this.close_minutes;
     }
     public boolean equals(Object obj)
     {

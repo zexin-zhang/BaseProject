@@ -203,7 +203,33 @@ public class SaleMenu {
                     Thread.sleep(2000);
                     new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
                     break;
+                case 5:
+                    System.out.println("----------------------------------------------------------------------");
+                    System.out.print("請輸入舊密碼：");
+                    String oldPassword=scan.nextLine();
+                    if (!restaurant.checkPassword(restaurant,oldPassword))
+                    {
+                        System.out.println("您輸入的密碼不正確請重新再試");
+                        Thread.sleep(2000);
+                        break;
+                    }
+                    System.out.print("請輸入新密碼：");
+                    String newPassword=scan.nextLine();
+                    System.out.print("請再次輸入：");
+                    String confirmPassword=scan.nextLine();
+                    if (!confirmPassword.equals(newPassword))
+                    {
+                        System.out.println("兩次密碼不正確請重新再試");
+                        Thread.sleep(2000);
+                        break;
+                    }
+                    System.out.println("----------------------------------------------------------------------");
+                    System.out.print("變更完成");
+                    Thread.sleep(2000);
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    break;
             }
+        restaurantcsv.write(restaurants);
         }
     }
     public void menuPrint() throws IOException, InterruptedException {
