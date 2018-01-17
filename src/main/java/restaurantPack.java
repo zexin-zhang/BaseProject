@@ -96,6 +96,10 @@ class restaurant{
     {
         return this.name;
     }
+    public String getUsername()
+    {
+        return this.username;
+    }
     public int getId()
     {
         return this.id;
@@ -108,8 +112,16 @@ class restaurant{
     {
         return this.address;
     }
+    public void setAddress(String Address)
+    {
+        this.address = Address;
+    }
     public String getPhone(){
         return this.phone;
+    }
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
     }
     public boolean getOpen()
     {
@@ -129,6 +141,13 @@ class restaurant{
         {
             return false;
         }
+    }
+    public void setRunningtime(int open_hours,int open_minutes,int close_hours,int close_minutes)
+    {
+        this.open_hours = open_hours;
+        this.open_minutes = open_minutes;
+        this.close_hours = close_hours;
+        this.close_minutes = close_minutes;
     }
     public String getRunningtime()
     {
@@ -169,6 +188,7 @@ class restaurant{
         }
         return runningtime;
     }
+
     public boolean checkPassword(String username,String password)
     {
         if(username.equals(this.username))
@@ -186,6 +206,28 @@ class restaurant{
         {
             return false;
         }
+    }
+    public boolean checkPassword(restaurant restaurant,String password)
+    {
+        if(restaurant.getUsername().equals(this.username))
+        {
+            if(password.equals(this.password))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public void setPassword(String password)
+    {
+        this.password= password;
     }
 
 }

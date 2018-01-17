@@ -146,8 +146,8 @@ public class mapSearch {
             System.out.println("餐廳名稱:"+restaurant.getName());
             System.out.println("餐廳位置:"+restaurant.getAddress());
             System.out.println("餐廳電話:0"+restaurant.getPhone());
-            System.out.println("餐廳類型"+restaurant.gettype());
-            System.out.println("餐廳營業時間"+restaurant.getRunningtime());
+            System.out.println("餐廳類型:"+restaurant.gettype());
+            System.out.println("餐廳營業時間:"+restaurant.getRunningtime());
             System.out.println("----------------------------------------------------------------------");
             System.out.println("命令提示：\"c\"：顯示相關優惠券 \"p\"：顯示評論   \"q\"：離開");
             System.out.println("----------------------------------------------------------------------");
