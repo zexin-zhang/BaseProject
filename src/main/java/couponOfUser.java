@@ -1,41 +1,40 @@
 
 public class couponOfUser {
   private coupon[] ownCoupon;
-  int num = 0;
+  private int[] restID;
+  public int num = 0;
 
   public couponOfUser() {
 
   }
 
   public void show() {
-    if (num == 0) {
+    if (this.num == 0) {
       System.out.println("User do not have coupon.");
-      break;
     }
-    for (int i = 0; i < num; i++) {
-      System.out.println(ownCoupon[num]);
+    if(this.num!=0){
+        for (int i = 0; i < this.num; i++) {
+            ownCoupon[this.num].getCoupon(restID[i]);
+        }
     }
+
   }
 
-  public void receivedCoupon(restaurant in) {
-    ownCoupon[num] = new coupon(in);
-    System.out.println("User have:");
-    System.out.println(ownCoupon[num]);
-    num++;
+  public void receivedCoupon(int id) {
+      this.num++;
+      System.out.println("User have:");
+      restID[this.num] = id;
+      for(int i = 1; i < this.num + 1; i++){
+          ownCoupon[i].getCoupon(restID[i]);
+      }
   }
 
-  public void useCoupon(restaurant in) {
+  public void useCoupon(int id) {
     System.out.println("User have:");
-    for (int i = 0; i < num; i++) {
-      System.out.print(ownCoupon[num]);
-      if (ownCoupon[num].getRestID() == in.getID()) {
-        ownCoupon[num].setUsed();
-        System.out.println("Have been used.");
-      } else
-        System.out.println("Haven't been used.");
-
-    }
-
+      for(int i = 1; i < this.num + 1; i++) {
+          if (restID[i] == id) ownCoupon[i].setUsed(id);
+          ownCoupon[i].getCoupon(restID[i]);
+      }
   }
 
 }
