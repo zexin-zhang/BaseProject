@@ -15,13 +15,13 @@ public class UserTest {
 		assertEquals(user3.getPassword(),"123");
 		
 		user1.setName("kbh");
-		//user1.setPassword();
 		user1.setUserID(0);
 		user1.setLocation(24, 120);
 		user2.setLocation(user1.getLocation());
 		
 		assertEquals(user1.getUserID(), 0);
-		
+	
+		user3.setPassword();
 	}
 
 }
