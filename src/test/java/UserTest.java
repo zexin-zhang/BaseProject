@@ -20,8 +20,6 @@ public class UserTest {
 		user2.setLocation(user1.getLocation());
 		
 		assertEquals(user1.getUserID(), 0);
-	
-		user3.setPassword();
 	}
 
 }
