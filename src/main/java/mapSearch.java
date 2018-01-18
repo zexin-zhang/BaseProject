@@ -137,6 +137,8 @@ public class mapSearch {
     }
     public void showonecanteen(restaurant restaurant) throws IOException, InterruptedException {
         Scanner scanner = new Scanner(System.in);
+        favoritePack myfavaorite = new favoritePack();
+        favorite thisres;
         while(true)
         {
 
@@ -148,8 +150,41 @@ public class mapSearch {
             System.out.println("餐廳電話:0"+restaurant.getPhone());
             System.out.println("餐廳類型:"+restaurant.gettype());
             System.out.println("餐廳營業時間:"+restaurant.getRunningtime());
+            thisres = myfavaorite.foundfavaoriteByResID(restaurant.getId(),user.getUserID());
+            if(thisres!=null)
+            {
+                if(thisres.getType()==1)
+                {
+                    System.out.print("此餐廳為我的最愛");
+                }
+                else if (thisres.getType()==2)
+                {
+                    System.out.print("此餐廳為我的黑名單");
+                }
+                System.out.print("\n");
+            }
             System.out.println("----------------------------------------------------------------------");
-            System.out.println("命令提示：\"c\"：顯示相關優惠券 \"p\"：顯示評論   \"q\"：離開");
+            System.out.print("命令提示：\"c\"：顯示相關優惠券 \"p\"：顯示評論   \"q\"：離開");
+            if(thisres!=null)
+            {
+                if(thisres.getType()==1)
+                {
+                    System.out.print("   \"d\":取消我的最愛");
+                }
+                else if (thisres.getType()==2)
+                {
+                    System.out.print("   \"d\":取消我的黑名單");
+                }
+                else
+                {
+                    System.out.print("   \"l\":新增我的最愛   \"dl\":新增為我的黑名單");
+                }
+            }
+            else
+            {
+                System.out.print("   \"l\":新增我的最愛   \"dl\":新增為我的黑名單");
+            }
+            System.out.print("\n");
             System.out.println("----------------------------------------------------------------------");
             String choose = scanner.nextLine();
             if (choose.equals("q")||choose.equals("Q"))
