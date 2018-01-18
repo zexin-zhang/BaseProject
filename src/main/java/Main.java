@@ -8,13 +8,6 @@ public class Main {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.println("----------------------------------------------------------------------");
         System.out.println("呷崩V1.0       發佈日期：2018/1/19");
-        
-
-        restaurants = restaurantcsv(restaurants);
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-
-        System.out.println("----------------------------------------------------------------------");
-        System.out.println("呷崩V1.0       發佈日期：2018/1/19");
         System.out.println("----------------------------------------------------------------------");
         System.out.println("1.一般使用者");
         System.out.println("2.餐廳管理員");
@@ -33,10 +26,5 @@ public class Main {
                 break;
         }
 
-    }
-    public static restaurantPack restaurantcsv(restaurantPack restaurants)
-    {
-//        restaurant restaurant = new restaurant();
-        return restaurants;
     }
 }

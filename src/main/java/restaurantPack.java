@@ -261,8 +261,6 @@ public class restaurantPack {
     public void add(String username,String passweord,String name,Location location1,String type,String address,String phone,int open_hours,int open_minutes,int close_hours,int close_minutes)
     {
         restaurantall[top] = new restaurant(top,username,passweord,name,location1,type,address,phone,open_hours,open_minutes,close_hours,close_minutes);
-
-        System.out.println(top);
         top++;
     }
     public void add(Object new_restaurant)

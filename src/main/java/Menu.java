@@ -25,7 +25,6 @@ public class Menu {
         }
     }
     public void mapSearch() throws IOException, InterruptedException {
-        System.out.println(userID+":"+this.users.getUser(userID).getName());
         mapSearch mapSearch_activity = new mapSearch(this.users.getUser(userID));
     }
     public void menuPrint() throws IOException, InterruptedException {
@@ -37,7 +36,7 @@ public class Menu {
         System.out.println("1.當前位置搜尋附近餐廳");
         System.out.println("2.查看餐廳評論");
         System.out.println("3.分類檢索餐廳");
-        System.out.println("4.利用地圖搜尋附近餐廳");
+        System.out.println("4.個人喜好設定");
         System.out.println("5.使用、領用優惠券");
         System.out.println("6.離開");
         System.out.println("----------------------------------------------------------------------");
