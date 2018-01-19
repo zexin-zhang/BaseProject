@@ -34,6 +34,7 @@ public class comMenu {
 			System.out.print("請輸入你的評論：");
 			Comment newComment = new Comment(choice.nextLine());
 			newComment.setRestaurantID(this.resID);
+			newComment.setUserName(user.getName());
 			comments.addComment(newComment);
 			commentCsv.write(comments);
 		}
