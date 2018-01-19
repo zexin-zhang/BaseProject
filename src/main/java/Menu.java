@@ -15,6 +15,8 @@ public class Menu {
             case 1:
                 mapSearch();
                 break;
+            case 4:
+                favoriteMenu favoriteMenu = new favoriteMenu(this.users.getUser(userID));
             default:
                 break;
 

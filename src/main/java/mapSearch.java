@@ -28,9 +28,12 @@ public class mapSearch {
     public void showcanteen() throws IOException, InterruptedException {
         restaurantPack nearby=new restaurantPack();
         double max_distance;
+        String blacklist;
+        boolean black = false;
+        int pass=0;
+        favoritePack myfavaorite = new favoritePack();
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         Scanner scanner = new Scanner(System.in);
-        ;
         System.out.println("----------------------------------------------------------------------");
         System.out.println(user.getName()+"您好，您目前位置在：主選單>當前位置附近餐廳>搜尋附近餐廳");
         System.out.println("----------------------------------------------------------------------");
@@ -38,17 +41,51 @@ public class mapSearch {
         max_distance=scanner.nextDouble();
         String junk = scanner.nextLine();
         System.out.println("----------------------------------------------------------------------");
+
+        do {
+            System.out.println("是否要顯示黑名單(Y/N)：");
+            blacklist = scanner.nextLine();
+            if (blacklist.equals("Y")||blacklist.equals("y"))
+            {
+                black = true;
+                pass=1;
+            }
+            else if(blacklist.equals("N")||blacklist.equals("n"))
+            {
+                black = false;
+                pass=1;
+            }
+        }while(pass==0);
+        System.out.println("----------------------------------------------------------------------");
         for (int i =0;i<restaurants.restaurantNumber();i++)
         {
             if(restaurants.getRestaurant(i).distance(user.getLocation())<=max_distance)
             {
-                nearby.add(restaurants.getRestaurant(i));
+                if (black==false)
+                {
+                    favorite thisres = myfavaorite.foundfavaoriteByResID(restaurants.getRestaurant(i).getId(),user.getUserID());
+                    if (thisres!=null)
+                    {
+                        if (thisres.getType()!=2)
+                        {
+                            nearby.add(restaurants.getRestaurant(i));
+                        }
+                    }
+                    else
+                    {
+                        nearby.add(restaurants.getRestaurant(i));
+                    }
+                }
+                else
+                {
+                    nearby.add(restaurants.getRestaurant(i));
+                }
             }
         }
-        restaurants.sortbydistance(user.getLocation());
+        nearby.sortbydistance(user.getLocation());
         int start_page=0,end_page=0;
         int page=1;
-        if (nearby.restaurantNumber()<start_page+4)
+        if (nearby.restaurantNumber()-1<start_page+4)
         {
             end_page=nearby.restaurantNumber()-1;
         }
@@ -61,7 +98,7 @@ public class mapSearch {
                 System.out.println("您目前在第"+page+"頁");
                 System.out.println("----------------------------------------------------------------------");
                 for (int i = start_page; i <= end_page; i++) {
-                    restaurant temp = restaurants.getRestaurant(i);
+                    restaurant temp = nearby.getRestaurant(i);
                     System.out.println((i+1) + "." + temp.getName());
                     System.out.println("  距離您 " + temp.distance(user.getLocation()) + "公尺");
                     System.out.println("  餐廳類型:" + temp.gettype());
@@ -73,7 +110,18 @@ public class mapSearch {
                     {
                         System.out.println("  餐廳休息中，營業時間為:"+temp.getRunningtime());
                     }
-
+                    favorite thisres = myfavaorite.foundfavaoriteByResID(nearby.getRestaurant(i).getId(),user.getUserID());
+                    if (thisres!=null)
+                    {
+                        if (thisres.getType()==1)
+                        {
+                            System.out.println("  此餐廳為你的最愛");
+                        }
+                        else if (thisres.getType()==2)
+                        {
+                            System.out.println("  此餐廳為你的黑名單");
+                        }
+                    }
                     System.out.println("----------------------------------------------------------------------");
                 }
                 System.out.println("命令提示：\"n\"：下一頁    \"p\"：上一頁   \"q\"：離開  其他數字選擇相應選項");
@@ -121,7 +169,7 @@ public class mapSearch {
                 else if(isNumeric(MenuSelection))
                 {
                     int chooseMenu = Integer.valueOf(MenuSelection);
-                    showonecanteen(restaurants.getRestaurant(chooseMenu-1));
+                    showonecanteen(nearby.getRestaurant(chooseMenu-1),this.user,"當前位置附近餐廳>搜尋附近餐廳");
                 }
 
             }
@@ -135,7 +183,7 @@ public class mapSearch {
 
 
     }
-    public void showonecanteen(restaurant restaurant) throws IOException, InterruptedException {
+    public static void showonecanteen(restaurant restaurant,User user,String Path) throws IOException, InterruptedException {
         Scanner scanner = new Scanner(System.in);
         favoritePack myfavaorite = new favoritePack();
         favorite thisres;
@@ -143,7 +191,7 @@ public class mapSearch {
         {
 
             System.out.println("----------------------------------------------------------------------");
-            System.out.println("您好，您目前位置在：主選單>當前位置附近餐廳>搜尋附近餐廳>"+restaurant.getName());
+            System.out.println("您好，您目前位置在：主選單>"+Path+">"+restaurant.getName());
             System.out.println("----------------------------------------------------------------------");
             System.out.println("餐廳名稱:"+restaurant.getName());
             System.out.println("餐廳位置:"+restaurant.getAddress());
@@ -156,12 +204,14 @@ public class mapSearch {
                 if(thisres.getType()==1)
                 {
                     System.out.print("此餐廳為我的最愛");
+                    System.out.print("\n");
                 }
                 else if (thisres.getType()==2)
                 {
                     System.out.print("此餐廳為我的黑名單");
+                    System.out.print("\n");
                 }
-                System.out.print("\n");
+
             }
             System.out.println("----------------------------------------------------------------------");
             System.out.print("命令提示：\"c\"：顯示相關優惠券 \"p\"：顯示評論   \"q\"：離開");
@@ -194,6 +244,53 @@ public class mapSearch {
             else if(choose.equals("p")||choose.equals("P"))
             {
                 comMenu comment = new comMenu(restaurant.getId(),user);
+            }
+            else if (choose.equals("l")||choose.equals("L"))
+            {
+                if (thisres!=null)
+                {
+                    if (thisres.getType()==0)
+                    {
+                        myfavaorite.setfavorite(restaurant.getId(),user.getUserID(),1);
+                    }
+                    else
+                    {
+                        System.out.println("指令輸入錯誤，請重新輸入");
+                        Thread.sleep(2000);
+                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    }
+                }
+                else
+                {
+                    myfavaorite.newfavorite(restaurant.getId(),user.getUserID(),1);
+                }
+            }
+            else if(choose.equals("d")||choose.equals("D"))
+            {
+                if (thisres!=null)
+                {
+                    myfavaorite.setfavorite(restaurant.getId(),user.getUserID(),0);
+                }
+            }
+            else if (choose.equals("dl")||choose.equals("DL"))
+            {
+                if (thisres!=null)
+                {
+                    if (thisres.getType()==0)
+                    {
+                        myfavaorite.setfavorite(restaurant.getId(),user.getUserID(),2);
+                    }
+                    else
+                    {
+                        System.out.println("指令輸入錯誤，請重新輸入");
+                        Thread.sleep(2000);
+                        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                    }
+                }
+                else
+                {
+                    myfavaorite.newfavorite(restaurant.getId(),user.getUserID(),2);
+                }
             }
             else
             {
