@@ -38,7 +38,7 @@ public class commentCsv {
 	public static void write(CommentList comments) {
 		
 		try {
-			File csv = new File("./src/main/resources/user.csv");
+			File csv = new File("./src/main/resources/comment.csv");
 			String resID = "resID";
 			String name = "userName";
 			String com = "comment";

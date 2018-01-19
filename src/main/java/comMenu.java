@@ -28,9 +28,9 @@ public class comMenu {
 		System.out.println("----------------------------------------------------------------------");
 		System.out.print("命令提示：\"c\"：評論，\"q\"：離開)：");
 		System.out.println("----------------------------------------------------------------------");
-		int choose = choice.nextInt();
+		String choose = choice.next();
 		choice.nextLine();
-		if(choose == 1) {
+		if(choose.equals("c") || choose.equals("C")) {
 			System.out.print("請輸入你的評論：");
 			Comment newComment = new Comment(choice.nextLine());
 			newComment.setRestaurantID(this.resID);
