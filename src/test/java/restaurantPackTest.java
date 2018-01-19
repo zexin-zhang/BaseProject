@@ -19,4 +19,53 @@ public class restaurantPackTest {
 
         return log.toString();
     }
+
+    @Test
+    public void add() {
+        String name="testme";
+    }
+
+    @Test
+    public void add1() {
+    }
+
+    @Test
+    public void add2() {
+    }
+
+    @Test
+    public void getRestaurant() {
+    }
+
+    @Test
+    public void getallRestaurant() {
+    }
+
+    @Test
+    public void getRestaurant1() {
+    }
+
+    @Test
+    public void getRestaurantoftype() {
+    }
+
+    @Test
+    public void login1() {
+    }
+
+    @Test
+    public void restaurantNumber() {
+    }
+
+    @Test
+    public void toString1() {
+    }
+
+    @Test
+    public void equals() {
+    }
+
+    @Test
+    public void sortbydistance() {
+    }
 }

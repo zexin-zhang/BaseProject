@@ -36,7 +36,7 @@ public class mapSearch {
         String blacklist;
         boolean black = false;
         int pass = 0;
-        favoritePack myfavaorite = new favoritePack();
+
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         Scanner scanner = new Scanner(System.in);
         System.out.println("----------------------------------------------------------------------");
@@ -58,6 +58,7 @@ public class mapSearch {
                 pass = 1;
             }
         } while (pass == 0);
+        favoritePack myfavaorite = new favoritePack();
         System.out.println("----------------------------------------------------------------------");
         for (int i = 0; i < restaurants.restaurantNumber(); i++) {
             if (restaurants.getRestaurant(i).distance(user.getLocation()) <= max_distance) {
@@ -85,6 +86,7 @@ public class mapSearch {
         }
         if (end_page != 0) {
             while (true) {
+                myfavaorite = new favoritePack();
                 System.out.println("您目前在第" + page + "頁");
                 System.out.println("----------------------------------------------------------------------");
                 for (int i = start_page; i <= end_page; i++) {
