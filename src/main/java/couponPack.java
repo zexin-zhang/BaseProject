@@ -28,7 +28,7 @@ public class couponPack {
 
      //use coupon
         if (whetherRecive.contentEquals("Y")) {
-            System.out.println("Do u want to receive coupon？（Y/N）：");
+            System.out.println("Do u want to use coupon？（Y/N）：");
             String whetherUse = input.nextLine();
             switch (whetherUse) {
                 case ("Y"): {
