@@ -16,6 +16,9 @@ public class SaleMenu {
             case 1:
                 restaurantLogin();
                 break;
+            case 2:
+                register();
+                break;
             default:
                 break;
 
@@ -51,11 +54,12 @@ public class SaleMenu {
         }
     }
     public void Salemenu(restaurant restaurant) throws IOException, InterruptedException {
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+
         Scanner scan = new Scanner(System.in);
         while(true)
         {
             String menuchoose;
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             System.out.println("----------------------------------------------------------------------");
             System.out.println("歡迎"+restaurant.getName()+"使用本軟體，請選擇您所需要的功能");
             System.out.println("----------------------------------------------------------------------");
@@ -74,8 +78,35 @@ public class SaleMenu {
                     case 1:
                         modify(restaurant);
                         break;
+                    case 2:
+                        while (true)
+                        {
+                            Scanner scanner = new Scanner(System.in);
+                            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                            System.out.println("----------------------------------------------------------------------");
+                            System.out.println(restaurant.getName()+"您好，您目前位置在：主選單>查看評論");
+
+                            comMenu comMenu = new comMenu(restaurant.getId());
+                            System.out.println("----------------------------------------------------------------------");
+                            System.out.println("命令提示：\"q\"：離開");
+                            System.out.println("----------------------------------------------------------------------");
+                            String choose = scanner.nextLine();
+                            if (choose.equals("q") || choose.equals("Q")) {
+                                break;
+                            }
+                            else {
+
+                            }
+                        }
+
+                        break;
+                }
+                if (choice==4)
+                {
+                    break;
                 }
             }
+
         }
     }
     public void modify(restaurant restaurant) throws InterruptedException, IOException {

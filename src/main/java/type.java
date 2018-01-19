@@ -34,6 +34,8 @@ public class type
         System.out.println("(14)水餃鍋貼店");
         System.out.println("(15)牛排店");
         System.out.println("(16)台式小吃");
+        System.out.println("(17)火鍋店");
+
         System.out.print("請輸入食物及餐廳種類:");//從這開始進行輸入
         String type = foodtype.nextLine();//輸入的東西傳入type中
         foodrestaurant = restaurants.getRestaurantoftype(type);
@@ -109,7 +111,7 @@ public class type
         else
         {
             System.out.println("資料已經到底了喔!");
-//            Thread.sleep(1000);
+            Thread.sleep(1000);
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         }
 
