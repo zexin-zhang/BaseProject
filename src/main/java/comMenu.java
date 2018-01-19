@@ -4,13 +4,13 @@ public class comMenu {
 	private int resID;
 	User user;
 	CommentList comments;
-	
+
 	public comMenu(int resID, User user) {
 		this.resID = resID;
 		this.user = user;
 		this.menuPrint();
 	}
-	
+
 	public comMenu(int resID) {
 		this.resID = resID;
 		comments = commentCsv.read();
@@ -18,15 +18,16 @@ public class comMenu {
 		System.out.println("所有評論：");
 		comments.getComment(resID);
 	}
-	
+
 	public void menuPrint() {
 		comments = commentCsv.read();
 		Scanner choice = new Scanner(System.in);
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("所有評論：");
+		System.out.println(resID);
 		comments.getComment(resID);
 		System.out.println("----------------------------------------------------------------------");
-		System.out.print("命令提示：\"c\"：評論，\"q\"：離開)：");
+		System.out.println("命令提示：\"c\"：評論，\"q\"：離開)：");
 		System.out.println("----------------------------------------------------------------------");
 		String choose = choice.next();
 		choice.nextLine();
@@ -38,6 +39,6 @@ public class comMenu {
 			comments.addComment(newComment);
 			commentCsv.write(comments);
 		}
-		choice.close();
+//		choice.close();
 	}
 }
