@@ -12,17 +12,7 @@ public class favoritePack {
     {
         favor_restaurant[index] = new favorite(type,restaurantID,UserID);
         index++;
-    }
-    public favorite foundfavaoriteByUsrID(int userid)
-    {
-        for (int i=0;i<index;i++)
-        {
-            if (favor_restaurant[i].getFavoritebyusr(userid)!=null)
-            {
-                return favor_restaurant[i];
-            }
-        }
-        return null;
+        write();
     }
     public favorite foundfavaoriteByResID(int resid,int usrid)
     {
@@ -35,7 +25,7 @@ public class favoritePack {
         }
         return null;
     }
-    public favorite foundfavaoriteByType(int type)
+    public favorite foundfavaoriteByType(int type,int usrid)
     {
         for (int i=0;i<index;i++)
         {
@@ -45,6 +35,12 @@ public class favoritePack {
             }
         }
         return null;
+    }
+    public void setfavorite(int restaurantID,int userID,int type)
+    {
+        favorite thisres = foundfavaoriteByResID(restaurantID,userID);
+        thisres.setType(type);
+        write();
     }
     public void readcsv() {
 
@@ -78,24 +74,20 @@ public class favoritePack {
                 }
             }
         }
-        for (int i=0;i<index;i++)
-        {
-            System.out.println(favor_restaurant[i].getType());
-        }
     }
-    public static void write(restaurantPack restaurants) {
+    public void write() {
 
         try {
-            File csv = new File("./src/main/resources/restaurant.csv");
-            String path="./src/main/resources/restaurant.csv";
+            File csv = new File("./src/main/resources/favorite.csv");
+            String path="./src/main/resources/favorite.csv";
             FileOutputStream wrFile = new FileOutputStream(path,false);
 
-            String title = "id,username,password,name,longitude,latitude,type,address,phone,available,open_hours,open_minutes,close_hours,close_minutes\n";
+            String title = "restaurantID,UserID,type\n";
             wrFile.write(title.getBytes("BIG5"));
 
-            for (int i=0;i<restaurants.restaurantNumber();i++)
+            for (int i=0;i<index;i++)
             {
-                wrFile.write((restaurants.getRestaurant(i).toString()+"\n").getBytes("BIG5"));
+                wrFile.write((this.favor_restaurant[i].toString()+"\n").getBytes("BIG5"));
             }
 
             wrFile.close();
@@ -166,6 +158,6 @@ class favorite
 
     @Override
     public String toString() {
-        return String.valueOf(userID);
+        return String.valueOf(restaurantID)+","+String.valueOf(userID)+","+String.valueOf(type);
     }
 }
